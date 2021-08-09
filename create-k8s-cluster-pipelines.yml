@@ -27,11 +27,10 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
     backendServiceArm: 'ARM-Subscription-connection'
     backendAzureRmResourceGroupName: 'rg-terraformstate'
     backendAzureRmStorageAccountName: 'terraformdemostg'
-    backendAzureRmContainerName: 'storageconnection'
+    backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'k8s.tfstate'
 
 
