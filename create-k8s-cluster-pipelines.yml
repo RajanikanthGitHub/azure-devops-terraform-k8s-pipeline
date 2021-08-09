@@ -15,7 +15,7 @@ steps:
 - task: DownloadSecureFile@1
   name: publickey 
   inputs:
-    secureFile: 'azure_rsa.pub'
+    secureFile: 'id_rsa.pub'
 
 ## installing Terraform tool
 - task: TerraformInstaller@0
