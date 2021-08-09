@@ -17,6 +17,11 @@ steps:
   inputs:
     secureFile: 'azure_rsa.pub'
 
+## installing Terraform tool
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '0.15.3'
+
 ## this is to for k8s cluster creation using terraform code
 - task: TerraformTaskV2@2
   inputs:
