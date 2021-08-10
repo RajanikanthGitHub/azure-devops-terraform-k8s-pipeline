@@ -23,18 +23,20 @@ steps:
     terraformVersion: '0.15.3'
 
 ## this is to for k8s cluster creation using terraform code
-- task: TerraformTaskV2@2
+- task: TerraformCLI@0
   inputs:
     provider: 'azurerm'
     command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
+    ensureBackend: true
     backendServiceArm: 'ARM-Subscription-connection'
     backendAzureRmResourceGroupName: 'rg-terraformstate'
     backendAzureRmStorageAccountName: 'terraformdemostg'
-    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmContainerName: 'storageconnection'
     backendAzureRmKey: 'k8s.tfstate'
 
 
-- task: TerraformTaskV2@2
+- task: TerraformCLI@0
   inputs:
     provider: 'azurerm'
     command: 'apply'
