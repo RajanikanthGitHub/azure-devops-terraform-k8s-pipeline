@@ -48,11 +48,4 @@ steps:
     environmentServiceNameAzureRM: 'ARM-Subscription-connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
 
-- task: TerraformTaskV2@2
-  inputs:
-    provider: 'azurerm'
-    command: 'plan'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
-    environmentServiceNameAzureRM: 'ARM-Subscription-connection'
 
