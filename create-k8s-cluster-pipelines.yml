@@ -9,6 +9,11 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  client_id: 53d2cc47-e67b-4dec-88d0-63c5bca5cef0
+  client_secret: vm3yAZWllKjN7~Z3gklQ6XXE38Zhjqwq2-
+
+
 steps:
 - script: echo K8S Terraform, Azure DevOps Piepline!
   displayName: 'Run a one-line script'
@@ -50,5 +55,4 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     environmentServiceNameAzureRM: 'ARM-Subscription-connection'
-
 
