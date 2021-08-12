@@ -9,15 +9,24 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  client_id: 53d2cc47-e67b-4dec-88d0-63c5bca5cef0
+  client_secret: vm3yAZWllKjN7~Z3gklQ6XXE38Zhjqwq2-
+
+
 steps:
 - script: echo K8S Terraform, Azure DevOps Piepline!
   displayName: 'Run a one-line script'
 - task: DownloadSecureFile@1
   name: publickey 
   inputs:
-    secureFile: 'azure_rsa.pub'
+    secureFile: 'id_rsa.pub'
 
+<<<<<<< HEAD
 ## installing Terraform tool
+=======
+# ## installing Terraform tool
+>>>>>>> 9425b799216cdf44764a5fb4fbef3990da70d983
 # - task: TerraformInstaller@0
 #   inputs:
 #     terraformVersion: '0.15.3'
@@ -43,4 +52,15 @@ steps:
     environmentServiceNameAzureRM: 'ARM-Subscription-connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
 
+<<<<<<< HEAD
 - task: Terraform
+=======
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    environmentServiceNameAzureRM: 'ARM-Subscription-connection'
+
+>>>>>>> 9425b799216cdf44764a5fb4fbef3990da70d983
