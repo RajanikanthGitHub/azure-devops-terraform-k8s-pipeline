@@ -2,3 +2,29 @@ resource "azurerm_resource_group" "k8s" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
 }
+
+resource "azurerm_kubernetes_cluster" "k8s" {
+  name = "${var.cluster_name}"
+  resource_group_name = azurerm_resource_group.k8s.name
+  location = azurerm_resource_group.k8s.location
+  dns_prefix = "${var.dns_prefix}"
+
+  linux_profile {
+    key_data = "${file("${var.ssh_public_key}")}"
+  }
+
+  default_node_pool {
+    name = "agent"
+    node_count = "${var.agent_count}"
+    vm_size = "Standard_DS1_v2"
+  }
+
+  service_principal {
+    client_id = "${var.client_id}"
+    client_secret = "${var.client_secret}"
+  }
+
+  tags = {
+    "Environmetn" = "Development"
+  }
+}

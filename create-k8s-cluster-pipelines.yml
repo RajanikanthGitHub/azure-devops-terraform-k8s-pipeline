@@ -18,9 +18,9 @@ steps:
     secureFile: 'azure_rsa.pub'
 
 ## installing Terraform tool
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: '0.15.3'
+# - task: TerraformInstaller@0
+#   inputs:
+#     terraformVersion: '0.15.3'
 
 ## this is to for k8s cluster creation using terraform code
 - task: TerraformTaskV2@2
@@ -38,7 +38,9 @@ steps:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
-    command: 'apply'
+    command: 'plan'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
     environmentServiceNameAzureRM: 'ARM-Subscription-connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+
+- task: Terraform
